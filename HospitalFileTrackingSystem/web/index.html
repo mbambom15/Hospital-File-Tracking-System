@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hospital File Tracking System</title>
+  <style>
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #ddd;
+    }
+    nav ul li {
+      margin: 0;
+    }
+    nav ul li a {
+      display: block;
+      padding: 10px 15px;
+      text-decoration: none;
+      color: black;
+    }
+    nav ul li a:hover {
+      background-color: #bbb;
+    }
+    .contact-form {
+      max-width: 500px;
+      margin: 2rem auto;
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 6px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 2rem;
+    }
+    /* Mobile-friendly */
+    @media (max-width: 600px) {
+      .contact-form {
+        padding: 15px;
+      }
+      nav ul {
+        flex-direction: column;
+      }
+      nav ul li {
+        margin-bottom: 5px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="login.jsp">Login</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section id="home">
+      <h2>Hospital File Tracking System</h2>
+      <p>Welcome to the HFTS. We are here to bring you closer to the help you deserve!</p>
+    </section>
+
+    <section id="about">
+      <p>Our mission is to get you access to your file immediately at government hospitals.<br />
+      We aim to reduce waiting times whenever you attend a hospital and prevent lost files.<br />
+      Our solution is a highly secure digital file tracking system.</p>
+    </section>
+
+    <section id="contact">
+      <form class="contact-form" action="#" method="post">
+        <div class="form-group">
+          <label for="fname">Full Name</label>
+          <input type="text" id="fname" name="fname" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="tel">Cellphone Number</label>
+          <input type="tel" id="tel" name="tel" required placeholder="+27 1248979824" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required placeholder="Feedback..."></textarea>
+        </div>
+        <button type="submit">SEND</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
