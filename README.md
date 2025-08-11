@@ -6,7 +6,7 @@ The Hospital File Tracking System (HFTS) is a web-based application that digitiz
 Features
 Patient file digitalization and management
 
-Secure login system for hospital administrators and doctors
+Secure login system for hospital administrators and doctors (RBAC using j_security_check)
 
 File lookup by patient details (name, surname, SA ID)
 
