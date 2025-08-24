@@ -14,12 +14,30 @@
     </head>
     <body>
         <%
-            Patient patient = (Patient)session.getAttribute("patient");
+            Patient patient = (Patient) session.getAttribute("patient");
             String name = patient.getName();
             String surname = patient.getSurname();
             Long id = patient.getId();
         %>
-        <h1>The file has been found/created : <%=name%> <%=surname%> with file number: <%=id%></h1>
-        
+        <h1>The file has been found: <%=name%> <%=surname%> with file number: <%=id%></h1>
+        <%
+            String message = (String)request.getAttribute("message");
+            if(message != null){
+            %>
+            <p><%=message%></p>
+            <%
+            }
+        %>
+
+        <div class="container">
+            <ul>
+                <li><a href="CheckServlet">Appointment / Check-Ups: </a></li>
+                <li><a href="HistoryServlet"> </a></li>
+                <li><a href="prescriptionsServlet">Prescriptions: </a></li>
+                <li></li>
+                <li><a href="payement">Billing / Payment: </a></li>
+            </ul>
+        </div>
+
     </body>
 </html>

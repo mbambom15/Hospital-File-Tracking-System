@@ -25,8 +25,8 @@
             <form action="LookUpServlet" method="POST">
                 <table>
                     <tr>
-                        <td>File ID: </td>
-                        <td><input type="text" name="id" required=""></td>
+                        <td>File ID (optional): </td>
+                        <td><input type="text" name="id" ></td>
                     </tr>
                     <tr>
                         <td>South African ID: </td>

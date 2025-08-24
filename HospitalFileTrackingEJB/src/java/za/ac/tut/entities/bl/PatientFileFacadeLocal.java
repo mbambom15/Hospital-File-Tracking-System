@@ -6,6 +6,7 @@ package za.ac.tut.entities.bl;
 
 import jakarta.ejb.Local;
 import java.util.List;
+import za.ac.tut.entities.Patient;
 import za.ac.tut.entities.PatientFile;
 
 /**
@@ -28,5 +29,8 @@ public interface PatientFileFacadeLocal {
     List<PatientFile> findRange(int[] range);
 
     int count();
+    
+    public List<PatientFile> findByPatient(Patient patient);
+
     
 }

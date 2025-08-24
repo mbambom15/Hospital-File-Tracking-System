@@ -8,6 +8,10 @@
         <servlet-name>RegisterPatient</servlet-name>
         <servlet-class>za.ac.tut.controller.RegisterPatient</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckServlet</servlet-name>
+        <servlet-class>za.ac.tut.controller.CheckServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LookUpServlet</servlet-name>
         <url-pattern>/LookUpServlet</url-pattern>
@@ -15,5 +19,9 @@
     <servlet-mapping>
         <servlet-name>RegisterPatient</servlet-name>
         <url-pattern>/RegisterPatient</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckServlet</servlet-name>
+        <url-pattern>/CheckServlet</url-pattern>
     </servlet-mapping>
 </web-app>

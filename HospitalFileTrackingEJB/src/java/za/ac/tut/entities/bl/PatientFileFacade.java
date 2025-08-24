@@ -7,6 +7,8 @@ package za.ac.tut.entities.bl;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.List;
+import za.ac.tut.entities.Patient;
 import za.ac.tut.entities.PatientFile;
 
 /**
@@ -27,5 +29,12 @@ public class PatientFileFacade extends AbstractFacade<PatientFile> implements Pa
     public PatientFileFacade() {
         super(PatientFile.class);
     }
-    
+
+    @Override
+    public List<PatientFile> findByPatient(Patient patient) {
+        return em.createQuery("SELECT f FROM PatientFile f WHERE f.patient = :patient", PatientFile.class)
+                .setParameter("patient", patient)
+                .getResultList();
+    }
+
 }

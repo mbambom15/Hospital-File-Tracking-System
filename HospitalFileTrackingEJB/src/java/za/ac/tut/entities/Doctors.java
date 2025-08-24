@@ -29,6 +29,10 @@ public class Doctors implements Serializable {
     private Long id;
     @Column(name = "doc_name")
     private String doctor_name;
+    @Column(name = "role")
+    private String role;
+    @Column(name = "available")
+    private Boolean available;
 
     @OneToMany(mappedBy = "doctorAssigned", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<PatientFile> patientFiles;
@@ -36,13 +40,31 @@ public class Doctors implements Serializable {
     public Doctors() {
     }
 
-    public Doctors(String doctor_name, List<PatientFile> patientFiles) {
+    public Doctors(String doctor_name, String role, Boolean available, List<PatientFile> patientFiles) {
         this.doctor_name = doctor_name;
+        this.role = role;
+        this.available = available;
         this.patientFiles = patientFiles;
+    }
+
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
 
     public String getDoctor_name() {
         return doctor_name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setDoctor_name(String doctor_name) {
@@ -56,9 +78,7 @@ public class Doctors implements Serializable {
     public void setPatientFiles(List<PatientFile> patientFiles) {
         this.patientFiles = patientFiles;
     }
-    
-    
-    
+
     public Long getId() {
         return id;
     }
@@ -91,5 +111,5 @@ public class Doctors implements Serializable {
     public String toString() {
         return "za.ac.tut.entities.Doctors[ id=" + id + " ]";
     }
-    
+
 }

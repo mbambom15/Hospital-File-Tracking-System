@@ -48,12 +48,16 @@ public class PatientFile implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     @JoinColumn(name = "patient_file_id")  // foreign key in Prescriptions table
     private List<Prescriptions> prescriptions;
+    
     @Column(name = "treatment")
     private String treatment;
+    
     @Column(name = "status")
     private String status;
+    
     @Temporal(TemporalType.DATE)
     private Date nextAppointment;
+    
     @Column(name = "notes")
     private String notes;
 

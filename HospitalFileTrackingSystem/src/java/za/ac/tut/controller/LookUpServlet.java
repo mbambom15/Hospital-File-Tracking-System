@@ -32,40 +32,70 @@ public class LookUpServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
 
-        Long id = Long.parseLong(request.getParameter("id"));
+        String idStr = request.getParameter("id");
         String sa_id = request.getParameter("SA_ID");
-        //get all records
+
+        // SA ID must be present
         if (sa_id == null || sa_id.length() != 13 || !sa_id.matches("\\d{13}")) {
             request.setAttribute("message", "Invalid SA ID format. Must be 13 numeric digits.");
             request.getRequestDispatcher("PateientLookUp.jsp").forward(request, response);
             return;
         }
 
-        // Check Luhn algorithm
+        // Check Luhn
         if (!isValidLuhn(sa_id)) {
             request.setAttribute("message", "Invalid SA ID. Failed Luhn check.");
             request.getRequestDispatcher("PateientLookUp.jsp").forward(request, response);
             return;
         }
-    
+
         List<Patient> allPatients = patientLocal.findAll();
         Patient patient = null;
-        String message = "";
+        Patient idMatch = null;
+        Patient saIdMatch = null;
 
-        for (Patient p : allPatients) {
-            if (p.getId().equals(id) && p.getSA_ID().equals(sa_id)) {
-                patient = p;
-                break;
+        // Parse file ID if provided
+        Long id = null;
+        if (idStr != null && !idStr.trim().isEmpty()) {
+            try {
+                id = Long.parseLong(idStr);
+            } catch (NumberFormatException e) {
+                request.setAttribute("message", "File ID must be numeric.");
+                request.getRequestDispatcher("PateientLookUp.jsp").forward(request, response);
+                return;
             }
         }
+
+        // Look up patients
+        for (Patient p : allPatients) {
+            if (id != null && p.getId().equals(id)) {
+                idMatch = p;
+                if (p.getSA_ID().equals(sa_id)) {
+                    patient = p; // Perfect match
+                    break;
+                }
+            }
+            if (p.getSA_ID().equals(sa_id)) {
+                saIdMatch = p;
+            }
+        }
+
+        // Handle results
         if (patient != null) {
             session.setAttribute("patient", patient);
-            RequestDispatcher disp = request.getRequestDispatcher("menu.jsp");
-            disp.forward(request, response);
+            request.getRequestDispatcher("menu.jsp").forward(request, response);
+
+        } else if (idMatch != null) {
+            request.setAttribute("message", "This File ID exists, but SA ID does not match.");
+            request.getRequestDispatcher("PateientLookUp.jsp").forward(request, response);
+
+        } else if (saIdMatch != null) {
+            session.setAttribute("patient", saIdMatch);
+            request.getRequestDispatcher("menu.jsp").forward(request, response);
+
         } else {
-            request.setAttribute("message", "File not Found, Create");
-            RequestDispatcher disp = request.getRequestDispatcher("register.jsp");
-            disp.forward(request, response);
+            request.setAttribute("message", "No record found. Please register new patient.");
+            request.getRequestDispatcher("register.jsp").forward(request, response);
         }
 
     }
